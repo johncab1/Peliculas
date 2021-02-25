@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject IRepositorio repositorio 
+    <div>
+        <h3>Peliculas</h3>
+        <ListadoPeliculas peliculas="peliculas">
+
+
+        </ListadoPeliculas>
+
+    </div>
+
+    <button @onclick="agregarPelicula">Agregar Pelicula</button>
+
+    @code
+{
+
+
+        private List<Pelicula> peliculas;
+
+
+        protected override void OnInitialized()
+        {
+            peliculas = repositorio.obtenerPeliculas();
+        }
+
+        void agregarPelicula()
+        {
+            peliculas.Add(new Pelicula() { Titulo = "nueva pelicula", Lanzamiento = DateTime.Today });
+        }
+    }
